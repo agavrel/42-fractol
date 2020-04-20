@@ -27,7 +27,7 @@ int		main(int ac, char **av)
 		exit(-1);
 	}
 	else if (!(init_variables(&d)))
-		ft_error("Failed to initialize variables");
+		ft_putendl("Failed to initialize variables");
 	fractol(&d);
 	mlx_mouse_hook(d.img.win, mouse_scaling_hook, &d);
 	mlx_hook(d.img.win, 2, 4, key_hook, &d);
@@ -43,12 +43,12 @@ int		main(int ac, char **av)
 int		init_variables(t_3d *d)
 {
 	if (!(d->img.mlx = mlx_init()))
-		ft_error("Mlx initialization failed");
+		ft_putendl("Mlx initialization failed");
 	if (!(d->img.win = mlx_new_window(d->img.mlx, WIDTH, HEIGHT, TITLE)))
-		ft_error("Window creation failed");
+		ft_putendl("Window creation failed");
 	init_img(d);
 	if (!d->img.image)
-		ft_error("Image creation failed");
+		ft_putendl("Image creation failed");
 	d->zoom = 200;
 	d->color = 0;
 	d->menu = 0;

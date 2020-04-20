@@ -14,8 +14,8 @@
 # define FRACTOL_H
 
 # include <math.h>
-# include <mlx.h>
-# include "../libft/libft.h"
+# include <../libmlx/mlx.h>
+# include "../libft/includes/libft.h"
 # include "keycode_mac.h"
 # include "colors.h"
 
@@ -25,6 +25,7 @@
 # define HELP_COLOR	0xffffff
 
 enum	e_fractal{MANDELBROT, JULIA, PHOENIX, BARNSLEY, FLAME, FLOWERBROT};
+
 
 /*
 ** stands for complex number
