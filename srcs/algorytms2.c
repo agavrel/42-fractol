@@ -19,10 +19,7 @@
 
 void	fern_fractal(t_3d *d)
 {
-	int		i;
-
 	d->fractal = BARNSLEY;
-	i = -1;
 	d->c = (t_cnb) {.real = 0, .imag = 0};
 	barnsley_fern_algo(d, d->c, 0, 0);
 }

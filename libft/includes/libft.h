@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angavrel <angavrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/05 16:10:16 by agrumbac          #+#    #+#             */
-/*   Updated: 2017/05/16 22:33:47 by agrumbac         ###   ########.fr       */
+/*   Created: 2016/11/05 16:10:16 by angavrel          #+#    #+#             */
+/*   Updated: 2017/05/16 22:33:47 by angavrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <stdbool.h>
+# include <math.h>
 
 # define BUFF_SIZE 16
 # define ARRAY_SIZE 4
-
-typedef struct		s_rgb
-{
-	float			r;
-	float			g;
-	float			b;
-}					t_rgb;
-
-typedef struct		s_hsb
-{
-	float			h;
-	float			s;
-	float			b;
-}					t_hsb;	
 
 typedef struct		s_array
 {
@@ -77,6 +65,7 @@ void				ft_putstr_fd(const char *s, int fd);
 void				ft_putendl_fd(const char *s, int fd);
 void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
+bool				ft_error(const char *s);
 
 void				ft_bzero(void *s, size_t n);
 void				*ft_memalloc(size_t size);
@@ -109,6 +98,7 @@ void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 int					ft_strnequ(const char *s1, const char *s2, size_t n);
 char				*ft_strjoin(const char *s1, const char *s2);
+char				*ft_strjoinfree(char *s1, char *s2, char control);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strsub(const char *s, unsigned int start, size_t len);
 char				*ft_strmap(const char *s, char (*f)(char));
@@ -135,6 +125,54 @@ char				*ft_strjoinnfree(char *s1, char *s2, size_t len, \
 					char free12b);
 char				*ft_strndup(const char *s, size_t n);
 
+
+
+# define I int
+# define F float
+
+typedef struct		s_i
+{
+	int			x;
+	int			y;
+	int			z;
+}					t_i;
+
+typedef struct		s_rgb
+{
+	float		r;
+	float		g;
+	float		b;
+}					t_rgb;
+
+typedef struct		s_hsb
+{
+	float		h;
+	float		s;
+	float		b;
+}					t_hsb;	
+
+typedef struct		s_vector
+{
+	float		x;
+	float		y;
+	float		z;
+	float		w;
+}					t_vector;
+
+void				ft_putnbr_base(int n, int b);
+long				ft_htoi(char *s);
+void				ft_puthex(int n);
+int					ft_isdigit(int c);
+float				**ft_identity_matrix(int fill, int fill_diagonal);
+float				**ft_matrix_rotation(float x, char axis);
+float				**ft_matrix_global_rotation(float **m, t_vector angle);
+float				**ft_matrix_scaling(float **m, t_vector scaling);
+float				**ft_matrix_z_scaling(float **matrix, float coefficient);
+float				**ft_sum_matrix(float **a, float **b);
+float				**ft_factor_matrix_free(float **a, float **b, char free);
+t_vector			ft_matrix_to_vector(float **m, t_vector v, t_vector center);
+void				ft_free_matrix(float **m);
+float				**ft_copy_matrix(float **m);
 long long			ft_abs(long long n);
 int					ft_sqrt(unsigned int n);
 int					ft_gcd(unsigned int a, unsigned int b);
@@ -145,13 +183,6 @@ int					ft_atoi(const char *str);
 long				ft_atol(const char *str);
 long long			ft_atoll(const char *str);
 int					ft_atoi_base(const char *str, int base);
-
-t_rgb				ft_hex2rgb(int hex);
-int					ft_rgb2hex(t_rgb rgb);
-t_rgb				ft_hsb2rgb(t_hsb hsb);
-int					ft_hsb2hex(t_hsb hsb);
-int					ft_shade_color(int c, double n);
-float				ft_fclamp(float n, float min, float max);
-char				*ft_str2lower(char *s);
+int					ft_clamp(int n, int min, int max);
 
 #endif

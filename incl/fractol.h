@@ -14,7 +14,7 @@
 # define FRACTOL_H
 
 # include <math.h>
-# include <../libmlx/mlx.h>
+# include "../libmlx/mlx.h"
 # include "../libft/includes/libft.h"
 # include "keycode_mac.h"
 # include "colors.h"
@@ -36,16 +36,6 @@ typedef struct		s_cnb
 	double			real;
 	double			imag;
 }					t_cnb;
-
-/*
-** structure used for offset
-*/
-
-typedef struct		s_i
-{
-	double			x;
-	double			y;
-}					t_i;
 
 /*
 ** structure used iterating put_pixel in img
@@ -162,5 +152,16 @@ unsigned			ft_rainbow_gradient(double x);
 int					motion_hook(int x, int y, t_3d *d);
 int					key_hook(int keycode, t_3d *d);
 int					mouse_scaling_hook(int button, int x, int y, t_3d *d);
+
+/*
+** Color conversion
+*/
+
+t_rgb				ft_hex2rgb(int hex);
+int					ft_rgb2hex(t_rgb rgb);
+t_rgb				ft_hsb2rgb(t_hsb hsb);
+int					ft_hsb2hex(t_hsb hsb);
+int					ft_shade_color(int c, double n);
+float				ft_fclamp(float n, float min, float max);
 
 #endif

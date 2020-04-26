@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+         #
+#    By: angavrel <angavrel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/11/04 17:08:23 by agrumbac          #+#    #+#              #
-#    Updated: 2017/05/16 22:06:37 by agrumbac         ###   ########.fr        #
+#    Created: 2016/11/04 17:08:23 by angavrel          #+#    #+#              #
+#    Updated: 2017/05/16 22:06:37 by angavrel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,18 @@ ft_arrayadd.c ft_arraydel.c ft_arraynew.c ft_arrayappend.c ft_arrayread.c
 SRC_IO = \
 ft_get_next_line.c ft_putendl.c ft_putnbr_fd.c \
 ft_putchar.c ft_putendl_fd.c ft_putstr.c \
-ft_putchar_fd.c ft_putnbr.c ft_putstr_fd.c
+ft_putchar_fd.c ft_putnbr.c ft_putstr_fd.c ft_error.c
 
 SRC_LST = \
 ft_lstadd.c ft_lstdel.c ft_lstiter.c ft_lstnew.c \
 ft_lstaddend.c ft_lstdelone.c ft_lstmap.c ft_lstsize.c ft_lstsort.c
 
 SRC_MATHS = \
-ft_abs.c ft_fac.c ft_intlen.c ft_sqrt.c \
-ft_atoi.c ft_gcd.c ft_pow.c ft_atol.c ft_atoll.c ft_atoi_base.c
+ft_abs.c ft_fac.c ft_intlen.c ft_sqrt.c ft_clamp.c \
+ft_atoi.c ft_gcd.c ft_pow.c ft_atol.c ft_atoll.c ft_atoi_base.c \
+ft_htoi.c ft_identity_matrix.c ft_matrix_global_rotation.c \
+ft_factor_matrix_free.c ft_matrix_z_scaling.c ft_copy_matrix.c \
+ft_matrix_to_vector.c ft_free_matrix.c
 
 SRC_MEM = \
 ft_bzero.c ft_memccpy.c ft_memcmp.c ft_memdel.c ft_memset.c \
@@ -41,7 +44,7 @@ ft_isprint.c ft_strcpy.c ft_strlcat.c ft_strnequ.c ft_strtrim.c \
 ft_itoa.c ft_itoa_base.c ft_strdel.c ft_strlen.c ft_strnew.c \
 ft_strcat.c ft_strdup.c ft_strmap.c ft_strnstr.c ft_toupper.c ft_tolower.c \
 ft_strtolower.c ft_strtoupper.c ft_wcslen.c ft_strlaststr.c ft_strnjoin.c \
-ft_strndup.c ft_strjoinnfree.c ft_itoa_base_s.c
+ft_strndup.c ft_strjoinnfree.c ft_itoa_base_s.c ft_strjoinfree.c
 
 SRC_PRINTF = \
 ft_printf.c ft_printf_int.c ft_printf_str.c ft_printf_ptr.c \

@@ -10,60 +10,80 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fractol
+### COMPILATION ###
+CC      = gcc -O2
+FLAGS  = -Wall -Wextra -Werror
 
-SRC_PATH = srcs
-OBJ_PATH = obj
-INC_PATH = incl
-LIBFT_PATH = libft
+### EXECUTABLE ###
+NAME   = fractol
 
-SRC = main.c \
+### INCLUDES ###
+LIBFT  = libft
+OBJ_PATH  = objs
+HEADER = incl
+SRC_PATH  = srcs
+MLX = libmlx
+
+### SOURCE FILES ###
+SOURCES = main.c \
 	  fractol.c \
 	  algorytms.c \
 	  algorytms2.c \
 	  hook.c \
 	  key_hook.c \
 	  color.c \
+	  ft_color_converter.c
 
-LIBFT = -L $(LIBFT_PATH) -lft -lm
+### OBJECTS ###
 
-MINILIBX = -lmlx -framework OpenGl -framework AppKit
+SRCS = $(addprefix $(SRC_PATH)/,$(SOURCES))
+OBJS = $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))
 
-FLAGS = -Wall -Werror -Wextra
+### COLORS ###
+NOC         = \033[0m
+BOLD        = \033[1m
+UNDERLINE   = \033[4m
+BLACK       = \033[1;30m
+RED         = \033[1;31m
+GREEN       = \033[1;32m
+YELLOW      = \033[1;33m
+BLUE        = \033[1;34m
+VIOLET      = \033[1;35m
+CYAN        = \033[1;36m
+WHITE       = \033[1;37m
 
-OBJ = $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
+### RULES ###
 
-INC = -I $(INC_PATH) -I $(LIBFT_PATH)
-
-all: lib $(NAME)
+all: lib tmp $(NAME)
 
 lib:
-	@make -C $(LIBFT_PATH)
+	@echo "$(GREEN)Creating lib files$(CYAN)"
+	@make -C $(LIBFT)
+	@make -C $(MLX)
 
-$(NAME) : $(OBJ)
-	@clang $(FLAGS) -o $(NAME) $(LIBFT) $(MINILIBX) $^
-	@echo "\n\033[36;1m"$@ "program created\033[0m"
-	@printf '\033[32;1m~~~~~~~~~~~~~~~~~~~~~~~~\n\033[0m'
+$(NAME): $(OBJS)
+	$(CC) $(FLAGS) -L $(LIBFT) -L $(MLX) -o $@ $^ -lft -lmlx -lXext -lX11 -lm
+	@echo "$(GREEN)Project successfully compiled"
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@clang $(FLAGS) $(INC) -o $@ -c $<
-	@printf '\033[32;1m~~~~~~\033[0m'
+tmp:
+	@mkdir -p objs
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HEADER)/$(NAME).h
+	@$(CC) $(FLAGS) -c -o $@ $<
+	@echo "$(BLUE)Creating object file -> $(WHITE)$(notdir $@)... $(RED)[Done]$(NOC)"
 
 clean:
-	@echo "\033[31m.o files supressed\033[0m"
+	@echo "$(GREEN)Supressing libraries files$(CYAN)"
+	@make clean -C $(LIBFT)
 	@rm -rf $(OBJ_PATH)
-	@make -C libft/ clean
 
-fclean: clean
-	@echo "\033[31mProgram deleted\033[0m"
-	@rm -rf $(NAME)
-	@make -C libft/ fclean
+fclean:
+	@echo "$(GREEN)Supressing libraries files$(CYAN)"
+	@rm -rf $(OBJ_PATH)
+	@rm -f $(NAME)
+	@make fclean -C $(LIBFT)
 
-re: fclean all
+re: fclean
+	@$(MAKE) all -j
 
-norme:
-	@norminette src/$(SRC)
-	@norminette $(INC_PATH)/*.h
-
-.PHONY: all lib clean fclean re norme
+.PHONY: temporary, re, fclean, clean
