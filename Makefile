@@ -17,6 +17,9 @@ FLAGS  = -Wall -Wextra -Werror
 ### EXECUTABLE ###
 NAME   = fractol
 
+### DEVICE ###
+UNAME		:= $(shell uname)
+
 ### INCLUDES ###
 LIBFT  = libft
 OBJ_PATH  = objs
@@ -51,6 +54,12 @@ BLUE        = \033[1;34m
 VIOLET      = \033[1;35m
 CYAN        = \033[1;36m
 WHITE       = \033[1;37m
+
+### CONDITIONS ###
+
+ifeq ($(UNAME), Linux)
+	FLAGS += -D LINUX
+endif
 
 ### RULES ###
 
