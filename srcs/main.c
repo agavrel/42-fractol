@@ -23,15 +23,15 @@ int		main(int ac, char **av)
 	if (ac != 2 || !init_fractal(&d, av[1]))
 	{
 		ft_putendl("\033[32mUsage: ./fractol Fractal, i.e: ./fractol Barnsley");
-		ft_putendl("[Mandelbrot] [Julia] [Phoenix] [Barnsley] [Flowerbrot]");
+		ft_putendl("[Mandelbrot] [Julia] [Phoenix] [Barnsley] [Flowerbrot]\033[0m");
 		exit(-1);
 	}
 	else if (!(init_variables(&d)))
 		ft_putendl("Failed to initialize variables");
 	fractol(&d);
 	mlx_mouse_hook(d.img.win, mouse_scaling_hook, &d);
-	mlx_hook(d.img.win, 2, 4, key_hook, &d);
-	mlx_hook(d.img.win, 6, 1 << 8, motion_hook, &d);
+	mlx_hook(d.img.win, 2, 1L<<0, key_hook, &d);
+	mlx_hook(d.img.win, 6, 1L<<6, motion_hook, &d);
 	mlx_loop(d.img.mlx);
 	return (0);
 }

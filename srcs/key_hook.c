@@ -123,6 +123,7 @@ static void	set_color(int k, t_3d *d)
 ** space is to activate / unactive motion hook
 */
 
+#include <stdio.h>
 int			key_hook(int k, t_3d *d)
 {
 	if (k == KEY_SPACE)
